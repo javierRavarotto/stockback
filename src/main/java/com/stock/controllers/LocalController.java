@@ -29,7 +29,7 @@ public class LocalController {
 
 	
 	@GetMapping
-	Iterable<local> List(){
+	Iterable<Local> List(){
 		return localRepository.findAll();
 	}
 	@GetMapping("{id}")
