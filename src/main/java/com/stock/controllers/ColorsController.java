@@ -31,7 +31,8 @@ public class ColorsController {
 		return colorsRepository.findAll();
 	}
 	@GetMapping("{id}")
-	public Colors lista( @PathVariable Integer id) {	 
+	public Colors lista( @PathVariable Integer id) {	
+		System.out.print("hola");
 		return colorsService.findById(id);
 	}
 	
@@ -45,7 +46,9 @@ public class ColorsController {
 	
 	@PutMapping("{id}")
 	public Colors update(@PathVariable Integer id,@RequestBody Colors color) {
-		Colors colorUpdate = colorsService.update(color);
+		System.out.print(color); 
+		
+		Colors colorUpdate = colorsService.update(id,color);
 		return colorUpdate;	
 	}
 	

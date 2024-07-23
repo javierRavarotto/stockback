@@ -47,7 +47,7 @@ public class LocalController {
 	
 	@PutMapping("{id}")
 	public Local update(@PathVariable Integer id,@RequestBody Local local) {
-		Local localUpdate = localService.update(local);
+		Local localUpdate = localService.update(id,local);
 		return localUpdate;	
 	}
 	

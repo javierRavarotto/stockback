@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stock.entitys.Categories;
@@ -44,7 +45,6 @@ public class CategoriesController {
 	@PostMapping
 	public Categories create(@RequestBody Categories categorie) {
 		Integer id = categorie.getId();
-		System.out.print(id);
 		Colors color =colorsService.findById(id);
 		categorie.setColor(color);
 		categorie.setCreationDate(new Date());
@@ -54,7 +54,8 @@ public class CategoriesController {
 	
 	@PutMapping("{id}")
 	public Categories update(@PathVariable Integer id,@RequestBody Categories categorie) {
-		Categories categorieUpdate = categoriesService.update(categorie);
+
+		Categories categorieUpdate = categoriesService.update(id,categorie);
 		return categorieUpdate;	
 	}
 	

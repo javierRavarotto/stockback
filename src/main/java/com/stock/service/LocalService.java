@@ -3,7 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.stock.entitys.Colors;
+
 import com.stock.entitys.Local;
 import com.stock.repository.LocalRepository;
 
@@ -20,7 +20,10 @@ public class LocalService {
 	}
 	
 	@Transactional
-	public Local update(Local local) {	
+	public Local update(Integer id,Local local) {
+		Local localUpdate = findById(id);
+		localUpdate.setName(local.getName());
+		
 	return localRepository.save(local);
 	
 	}

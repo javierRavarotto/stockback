@@ -13,14 +13,23 @@ public class CategoriesService {
 	@Autowired
 	CategoriesRepository categoriesRepository;
 	
+	@Autowired
+	ColorsService colorsService;
+	
 	public Categories findById(Integer id) {
 		Categories categorie = categoriesRepository.findById(id).get();
 		return categorie;
 	}
 	
 	@Transactional
-	public Categories update(Categories categorie) {	
-	return categoriesRepository.save(categorie);
+	public Categories update(Integer id,Categories categorie) {
+		 Integer idColor=categorie.getId();
+		Colors color =colorsService.findById(idColor);
+		Categories categorieUpdate= findById(id);
+		categorieUpdate.setName(categorie.getName());
+		categorieUpdate.setColor(color);
+		
+	return categoriesRepository.save(categorieUpdate);
 	
 	}
 	

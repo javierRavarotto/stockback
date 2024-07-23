@@ -2,7 +2,6 @@ package com.stock.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.stock.entitys.Colors;
 import com.stock.repository.ColorsRepository;
 
@@ -18,8 +17,11 @@ public class ColorsService {
 	}
 	
 	@Transactional
-	public Colors update(Colors color) {	
-	return colorsRepository.save(color);
+	public Colors update(Integer id ,Colors color) {	
+		Colors colorUpdate = findById(id);
+		colorUpdate.setName(color.getName());
+		colorUpdate.setCode(color.getCode());
+	return colorsRepository.save(colorUpdate);
 	
 	}
 	

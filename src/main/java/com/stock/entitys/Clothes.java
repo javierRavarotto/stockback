@@ -4,10 +4,14 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 @Entity
 public class Clothes{
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer  id;
 	private Integer  code;
 	private String name;
 	private String color;
@@ -27,9 +31,12 @@ public class Clothes{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Clothes(Integer code, String name, String color, int price, String category, String model, String type,
-			String image, Boolean high, Date creationDate, Date editDate, List<String> sizes, Date lowDate) {
+
+	public Clothes(Integer id, Integer code, String name, String color, int price, String category, String model,
+			String type, String image, Boolean high, Date creationDate, Date editDate, List<String> sizes,
+			Date lowDate) {
 		super();
+		this.id = id;
 		this.code = code;
 		this.name = name;
 		this.color = color;
@@ -44,19 +51,23 @@ public class Clothes{
 		this.sizes = sizes;
 		this.lowDate = lowDate;
 	}
+	 
 
 	@Override
 	public String toString() {
-		return "Clothes [code=" + code + ", name=" + name + ", color=" + color + ", price=" + price + ", category="
-				+ category + ", model=" + model + ", type=" + type + ", image=" + image + ", high=" + high
-				+ ", creationDate=" + creationDate + ", editDate=" + editDate + ", sizes=" + sizes + ", lowDate="
+		return "Clothes [id=" + id + ", code=" + code + ", name=" + name + ", color=" + color + ", price=" + price
+				+ ", category=" + category + ", model=" + model + ", type=" + type + ", image=" + image + ", high="
+				+ high + ", creationDate=" + creationDate + ", editDate=" + editDate + ", sizes=" + sizes + ", lowDate="
 				+ lowDate + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(category, code, color, creationDate, editDate, high, image, lowDate, model, name, price,
-				sizes, type);
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Integer getCode() {

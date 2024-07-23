@@ -73,6 +73,12 @@ public class Categories{
 	public void setLowDate(Date lowDate) {
 		this.lowDate = lowDate;
 	}
+
+	@Override
+	public String toString() {
+		return "Categories [id=" + id + ", name=" + name + ", color=" + color + ", creationDate=" + creationDate
+				+ ", editDate=" + editDate + ", lowDate=" + lowDate + "]";
+	}
 	
 	
 	
