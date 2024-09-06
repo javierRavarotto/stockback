@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.stock.entitys.Colors;
 
-
+@Repository
 public interface ColorsRepository extends CrudRepository<Colors, Integer>  {
 
 

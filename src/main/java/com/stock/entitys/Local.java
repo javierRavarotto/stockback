@@ -2,11 +2,15 @@ package com.stock.entitys;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Local{
@@ -15,8 +19,8 @@ public class Local{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer  id;
 	private String name;
-	@OneToMany
-	private List<Clothes>stock;
+	@OneToOne(cascade =CascadeType.ALL)
+	private Stock stock;
 	private List<String>message;
 	private Date creationDate;
 	private Date editDate;	
@@ -24,22 +28,6 @@ public class Local{
 	public Local() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-	public Local(Integer id, String name, List<Clothes> stock, List<String> message, Date creationDate, Date editDate,
-			Date lowDate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.stock = stock;
-		this.message = message;
-		this.creationDate = creationDate;
-		this.editDate = editDate;
-		this.lowDate = lowDate;
-	}
-	@Override
-	public String toString() {
-		return "Local [id=" + id + ", name=" + name + ", stock=" + stock + ", message=" + message + ", creationDate="
-				+ creationDate + ", editDate=" + editDate + ", lowDate=" + lowDate + "]";
 	}
 	public Integer getId() {
 		return id;
@@ -53,11 +41,11 @@ public class Local{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<Clothes> getStock() {
+	public Stock getStock() {
 		return stock;
 	}
-	public void setStock(List<Clothes> stock) {
-		this.stock = stock;
+	public void setStock(Stock stockLocal) {
+		this.stock = stockLocal;
 	}
 	public List<String> getMessage() {
 		return message;
@@ -84,5 +72,21 @@ public class Local{
 		this.lowDate = lowDate;
 	}
 	
+	public Local(Integer id, String name, Stock stock, List<String> message, Date creationDate, Date editDate,
+			Date lowDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.stock = stock;
+		this.message = message;
+		this.creationDate = creationDate;
+		this.editDate = editDate;
+		this.lowDate = lowDate;
+	}
+	@Override
+	public String toString() {
+		return "Local [id=" + id + ", name=" + name + ", stock=" + stock + ", message=" + message + ", creationDate="
+				+ creationDate + ", editDate=" + editDate + ", lowDate=" + lowDate + "]";
+	}
 	
 }

@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.stock.entitys.Inventory;
 import com.stock.entitys.Local;
 import com.stock.repository.LocalRepository;
+import com.stock.service.InventoryService;
 import com.stock.service.LocalService;
+import com.stock.service.StockService;
 
 @CrossOrigin(origins = "http://localhost:4200/")
 @RestController
@@ -27,23 +30,28 @@ public class LocalController {
 	@Autowired
 	LocalRepository localRepository;
 
+
+	@Autowired
+	StockService stockService;
+	@Autowired
+	InventoryService inventoryService;
+
 	
 	@GetMapping
 	Iterable<Local> List(){
+		System.out.print(localRepository.findAll());
 		return localRepository.findAll();
 	}
 	@GetMapping("{id}")
 	public Local lista( @PathVariable Integer id) {	 
 		return localService.findById(id);
 	}
-	
-	@PostMapping
+		@PostMapping
 	public Local create(@RequestBody Local local) {
-		
-		local.setCreationDate(new Date());
+     	local.setCreationDate(new Date());
+     	local.setStock(stockService.create());
 		return localRepository.save(local);
 	}
-	
 	
 	@PutMapping("{id}")
 	public Local update(@PathVariable Integer id,@RequestBody Local local) {
@@ -53,8 +61,8 @@ public class LocalController {
 	
 	@DeleteMapping("{id}")
 	public void borrar( @PathVariable Integer id) {
-		
 		localService.delete(id);
-		}
+		} 
 	
+		
 }
