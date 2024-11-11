@@ -99,6 +99,13 @@ public class Inventory {
 	}
 	public void setMg(Integer mg) {
 		this.mg = mg;
+	}
+	@Override
+	public String toString() {
+		return "Inventory [id=" + id + ", stock=" + stock + ", clothe=" + clothe + ", s=" + s + ", m=" + m + ", l=" + l
+				+ ", xl=" + xl + ", doublexl=" + doublexl + ", triplexl=" + triplexl + ", fourxl=" + fourxl + ", mg="
+				+ mg + "]";
 	}	
+	
 	
 }

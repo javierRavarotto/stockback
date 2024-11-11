@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.stock.entitys.Colors;
 import com.stock.entitys.Inventory;
 import com.stock.repository.InventoryRepository;
 import com.stock.service.InventoryService;
@@ -27,13 +28,13 @@ public class InventaryController {
 	
 	@GetMapping
 	Iterable<Inventory> List(){
-		System.out.print(inventoryRepository.findAll());
 		return inventoryRepository.findAll();
 	}
 	
 	@PutMapping("{id}/addClothe")
-	public Inventory addClothe(@PathVariable Integer id,@RequestBody Integer idClothe) {
-		Inventory localUpdate = inventoryService.addClothe(id, idClothe);
+	public Inventory addClothe(@PathVariable Integer id,@RequestBody Inventory inventory) {
+		System.out.print("emntro");
+		Inventory localUpdate = inventoryService.addClothe(id, inventory);
 		return localUpdate;	
 	}
 }
